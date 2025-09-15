@@ -8,7 +8,7 @@ const InfoSection: React.FC = () => {
           Why <span className="text-[#fbbf24]">Choose</span> Us?
         </h2>
         <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed">
-          At ZEA CRM, we're not just a service provider; we're your growth partner. Our platform is built on a foundation of cutting-edge technology, user-centric design, and deep industry expertise to help you build lasting customer relationships.
+          At ZeaCRM, we're not just a service provider; we're your growth partner. Our platform is built on a foundation of cutting-edge technology, user-centric design, and deep industry expertise to help you build lasting customer relationships.
         </p>
         <ul className="text-left max-w-2xl mx-auto space-y-3 text-gray-300">
           <li className="flex items-start">
@@ -21,11 +21,11 @@ const InfoSection: React.FC = () => {
           </li>
           <li className="flex items-start">
             <CheckIcon />
-            <span><strong>Data Security:</strong> We employ state-of-the-art security protocols to protect your sensitive data.</span>
+            <span><strong>Identify Barriers, Drive Results:</strong>  We help you identify hidden challenges in your healthcare institution and automate solutions to drive success.</span>
           </li>
            <li className="flex items-start">
             <CheckIcon />
-            <span><strong>24/7 Expert Support:</strong> Our dedicated team is always available to assist you with any challenges.</span>
+            <span><strong>Technology Meets Customer-Friendly Solutions:</strong> With over a decade serving US businesses, we blend digital marketing expertise and technology to create solutions your customers actually love.</span>
           </li>
         </ul>
       </div>
