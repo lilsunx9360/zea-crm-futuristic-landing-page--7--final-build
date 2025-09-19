@@ -103,7 +103,7 @@ const TrialForm: React.FC<TrialFormProps> = ({ onSuccess }) => {
       </button>
       <div className="text-center text-gray-400 text-sm py-2">OR</div>
       <a 
-        href="https://api.leadconnectorhq.com/widget/booking/HZQ0cGWTvMEjFfFehmvc" 
+        href="https://api.leadconnectorhq.com/widget/booking/onsyC8snXIzvJViJHXbv" 
         target="_blank" 
         rel="noopener noreferrer"
         className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300"
