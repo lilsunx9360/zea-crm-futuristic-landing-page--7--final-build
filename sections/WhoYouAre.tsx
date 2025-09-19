@@ -26,7 +26,7 @@ const serviceCategories: ServiceCategory[] = [
   { 
     title: 'Integrated Payments', 
     description: 'Patients can settle bills through UPI, QR, or cards directly from their phones. This reduces crowding at the billing counter and speeds up discharge for inpatients.', 
-    videoId: '1a8mSQYSJiL86NA7P6vG59ELhcRhnM43k'  
+    videoId: '1J6fx8EtQSdaAyWYSdtisRaAdsoiLvNeb'  
   },
   { 
     title: 'Post-Care Automation', 
