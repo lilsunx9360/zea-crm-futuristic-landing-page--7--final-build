@@ -1,4 +1,5 @@
 
+
 import React, { useEffect, useState } from 'react';
 
 interface ModalProps {
@@ -72,7 +73,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, size = 'normal
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-center p-4"
+      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex justify-center items-start p-4 sm:p-6 md:p-8 overflow-y-auto"
       onClick={onClose}
     >
       <div

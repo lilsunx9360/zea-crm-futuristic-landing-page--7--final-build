@@ -1,13 +1,12 @@
-
-
 import React, { useState } from 'react';
 import { Role, BusinessCategory } from '../types';
 
 interface TrialFormProps {
   onSuccess?: () => void;
+  onBookAppointment: () => void;
 }
 
-const TrialForm: React.FC<TrialFormProps> = ({ onSuccess }) => {
+const TrialForm: React.FC<TrialFormProps> = ({ onSuccess, onBookAppointment }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     hospitalName: '',
@@ -102,14 +101,13 @@ const TrialForm: React.FC<TrialFormProps> = ({ onSuccess }) => {
         Submit
       </button>
       <div className="text-center text-gray-400 text-sm py-2">OR</div>
-      <a 
-        href="https://api.leadconnectorhq.com/widget/booking/onsyC8snXIzvJViJHXbv" 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <button 
+        type="button"
+        onClick={onBookAppointment}
         className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300"
       >
         Book an Appointment
-      </a>
+      </button>
     </form>
   );
 };

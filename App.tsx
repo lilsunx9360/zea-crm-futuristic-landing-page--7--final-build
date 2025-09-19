@@ -1,5 +1,3 @@
-
-
 import React, { useState, useRef } from 'react';
 import Hero from './sections/Hero';
 import WhoYouAre from './sections/WhoYouAre';
@@ -11,8 +9,9 @@ import Modal from './components/Modal';
 import { Role, ServiceCategory, BusinessCategory } from './types';
 import ServiceDetailPage from './sections/ServiceDetailPage';
 import VideoPlayerPage from './sections/VideoPlayerPage';
+import BookingWidget from './components/BookingWidget';
 
-const TrialModalContent: React.FC<{onClose: () => void}> = ({ onClose }) => {
+const TrialModalContent: React.FC<{onClose: () => void; onBookAppointment: () => void;}> = ({ onClose, onBookAppointment }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     hospitalName: '',
@@ -110,23 +109,37 @@ const TrialModalContent: React.FC<{onClose: () => void}> = ({ onClose }) => {
         Submit
       </button>
       <div className="text-center text-gray-400 text-sm py-2">OR</div>
-      <a 
-        href="https://api.leadconnectorhq.com/widget/booking/onsyC8snXIzvJViJHXbv" 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <button 
+        type="button"
+        onClick={onBookAppointment}
         className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300"
       >
         Book an Appointment
-      </a>
+      </button>
     </form>
   );
 };
 
 export default function App() {
   const [isTrialModalOpen, setIsTrialModalOpen] = useState(false);
+  const [bookingWidgetInfo, setBookingWidgetInfo] = useState<{src: string; id: string} | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | null>(null);
   const [playingVideoInfo, setPlayingVideoInfo] = useState<{id: string, title: string} | null>(null);
   const whoYouAreRef = useRef<HTMLDivElement>(null);
+
+  const REACH_US_WIDGET = { 
+    src: 'https://api.leadconnectorhq.com/widget/booking/xCEEUK8oshX6061S9lrP', 
+    id: 'xCEEUK8oshX6061S9lrP_1758288943573' 
+  };
+  const DEMO_WIDGET = { 
+    src: 'https://api.leadconnectorhq.com/widget/booking/onsyC8snXIzvJViJHXbv', 
+    id: 'onsyC8snXIzvJViJHXbv_1758289157842' 
+  };
+
+  const handleOpenBookingModal = (widgetInfo: {src: string; id: string}) => {
+    setIsTrialModalOpen(false); // Close other modals when opening this one
+    setBookingWidgetInfo(widgetInfo);
+  };
 
   const handleScrollToWhoYouAre = () => {
     if (selectedCategory) {
@@ -165,7 +178,12 @@ export default function App() {
   }
 
   if (selectedCategory) {
-    return <ServiceDetailPage category={selectedCategory} onBack={() => setSelectedCategory(null)} onPlayVideo={handlePlayVideo} />;
+    return <ServiceDetailPage 
+      category={selectedCategory} 
+      onBack={() => setSelectedCategory(null)} 
+      onPlayVideo={handlePlayVideo} 
+      onBookAppointment={() => handleOpenBookingModal(REACH_US_WIDGET)}
+    />;
   }
 
   return (
@@ -177,13 +195,20 @@ export default function App() {
         />
         <WhoYouAre ref={whoYouAreRef} onCategoryClick={handleSelectCategory} />
         <InfoSection />
-        <BookAppointment />
+        <BookAppointment onBookAppointment={() => handleOpenBookingModal(DEMO_WIDGET)} />
         <Community />
         <Footer />
       </main>
 
       <Modal isOpen={isTrialModalOpen} onClose={() => setIsTrialModalOpen(false)}>
-        <TrialModalContent onClose={() => setIsTrialModalOpen(false)} />
+        <TrialModalContent 
+          onClose={() => setIsTrialModalOpen(false)} 
+          onBookAppointment={() => handleOpenBookingModal(REACH_US_WIDGET)} 
+        />
+      </Modal>
+
+      <Modal isOpen={!!bookingWidgetInfo} onClose={() => setBookingWidgetInfo(null)} size="large">
+        {bookingWidgetInfo && <BookingWidget src={bookingWidgetInfo.src} id={bookingWidgetInfo.id} />}
       </Modal>
     </div>
   );

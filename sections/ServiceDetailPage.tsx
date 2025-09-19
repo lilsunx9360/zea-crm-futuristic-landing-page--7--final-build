@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ServiceCategory } from '../types';
 import SocialIcons from '../components/SocialIcons';
@@ -8,6 +7,7 @@ interface ServiceDetailPageProps {
   category: ServiceCategory;
   onBack: () => void;
   onPlayVideo: (videoId: string, videoTitle: string) => void;
+  onBookAppointment: () => void;
 }
 
 const BackArrowIcon = () => (
@@ -26,7 +26,7 @@ const PlayIcon = () => (
     <svg className="w-6 h-6 ml-2 text-gray-400 group-hover:text-[#fbbf24] transition-colors flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path></svg>
 );
 
-const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ category, onBack, onPlayVideo }) => {
+const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ category, onBack, onPlayVideo, onBookAppointment }) => {
   return (
     <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 animate-fade-in">
       <div className="max-w-5xl mx-auto">
@@ -66,7 +66,7 @@ const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({ category, onBack,
         
         <section className="mt-16">
             <div className="max-w-md mx-auto bg-slate-800 border border-slate-700 rounded-2xl shadow-lg p-4 sm:p-6 md:p-8">
-                <TrialForm />
+                <TrialForm onBookAppointment={onBookAppointment} />
             </div>
         </section>
 

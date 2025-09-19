@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-const BookAppointment: React.FC = () => {
+interface BookAppointmentProps {
+  onBookAppointment: () => void;
+}
+
+const BookAppointment: React.FC<BookAppointmentProps> = ({ onBookAppointment }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -112,14 +116,13 @@ const BookAppointment: React.FC = () => {
                 </button>
               </form>
               <div className="text-center text-gray-400 text-sm py-4">OR</div>
-              <a 
-                href="https://api.leadconnectorhq.com/widget/booking/HZQ0cGWTvMEjFfFehmvc" 
-                target="_blank" 
-                rel="noopener noreferrer"
+              <button 
+                type="button"
+                onClick={onBookAppointment}
                 className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
               >
                 Book an Appointment
-              </a>
+              </button>
             </>
           )}
         </div>
