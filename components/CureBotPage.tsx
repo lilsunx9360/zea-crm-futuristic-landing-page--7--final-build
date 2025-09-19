@@ -32,7 +32,7 @@ const CureBotPage: React.FC<CureBotPageProps> = ({ onBack }) => {
             
             <header className="text-center mb-8">
                 <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-                    🌐 CureBot – Your AI FAQ Assistant for Health Questions
+                    CureBot – Your AI FAQ Assistant for Health Questions
                 </h1>
                 <p className="text-lg text-gray-400 mt-2">Powered by Zea PRM</p>
             </header>
