@@ -77,8 +77,8 @@ const BookAppointment: React.FC<BookAppointmentProps> = ({ onBookAppointment }) 
                     type="email" 
                     name="email" 
                     id="email-appt" 
-                    placeholder="Your Email" 
-                    required 
+                    placeholder="Your Email (optional)" 
+                    
                     value={formData.email} 
                     onChange={handleChange} 
                     className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 

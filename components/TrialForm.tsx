@@ -74,8 +74,8 @@ const TrialForm: React.FC<TrialFormProps> = ({ onSuccess, onBookAppointment }) =
         <input type="text" name="hospitalName" id="hospitalName" required value={formData.hospitalName} onChange={handleChange} className={baseInputStyles} />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1 sm:mb-1.5">Email</label>
-        <input type="email" name="email" id="email" required value={formData.email} onChange={handleChange} className={baseInputStyles} />
+        <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1 sm:mb-1.5">Email Optional</label>
+        <input type="email" name="email" id="email"  value={formData.email} onChange={handleChange} className={baseInputStyles} />
       </div>
       <div>
         <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-300 mb-1 sm:mb-1.5">Mobile Number</label>

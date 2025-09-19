@@ -5,9 +5,10 @@ import Button from '../components/Button';
 interface HeroProps {
   onStartTrial: () => void;
   onScrollToServices: () => void;
+  onOpenCureBot: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onStartTrial, onScrollToServices }) => {
+const Hero: React.FC<HeroProps> = ({ onStartTrial, onScrollToServices, onOpenCureBot }) => {
   return (
     <section className="flex flex-col items-center justify-center text-center p-4 relative overflow-hidden pt-20 sm:pt-24 pb-12 sm:pb-16">
         <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
@@ -29,12 +30,15 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial, onScrollToServices }) => {
         <p className="text-base sm:text-lg md:text-xl mt-4 max-w-2xl text-gray-300">
           Integrated CRM solutions for the modern business world.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+        <div className="mt-10 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6">
           <Button variant="gradient" onClick={onStartTrial}>
             Reach Us
           </Button>
           <Button variant="outline" onClick={onScrollToServices}>
             Our Services
+          </Button>
+          <Button variant="outline" onClick={onOpenCureBot}>
+            CureBot
           </Button>
         </div>
       </div>

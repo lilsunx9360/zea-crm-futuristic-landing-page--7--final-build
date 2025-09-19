@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+
+import React, { useState, useRef, useEffect } from 'react';
 import Hero from './sections/Hero';
 import WhoYouAre from './sections/WhoYouAre';
 import InfoSection from './sections/InfoSection';
@@ -10,7 +11,8 @@ import { Role, ServiceCategory, BusinessCategory } from './types';
 import ServiceDetailPage from './sections/ServiceDetailPage';
 import VideoPlayerPage from './sections/VideoPlayerPage';
 import BookingWidget from './components/BookingWidget';
-
+import CureBotPage from './components/CureBotPage';
+import { createChat } from '@n8n/chat';
 const TrialModalContent: React.FC<{onClose: () => void; onBookAppointment: () => void;}> = ({ onClose, onBookAppointment }) => {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -125,7 +127,57 @@ export default function App() {
   const [bookingWidgetInfo, setBookingWidgetInfo] = useState<{src: string; id: string} | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | null>(null);
   const [playingVideoInfo, setPlayingVideoInfo] = useState<{id: string, title: string} | null>(null);
+  const [isCureBotPageOpen, setIsCureBotPageOpen] = useState(false);
   const whoYouAreRef = useRef<HTMLDivElement>(null);
+
+  // Effect to initialize the chat widget once on app load.
+  useEffect(() => {
+    const initializeChat = async () => {
+      // Prevent re-initialization
+      if (document.querySelector('n8n-chat')) {
+        return;
+      }
+      try {
+       
+        createChat({
+            webhookUrl: 'https://n8n.urlfactory.website/webhook/e65e9dea-9283-42a8-bb5e-d08984d2638f/chat',
+            mode: 'window',
+            theme: {
+              chatWindow: { backgroundColor: "#ffffff" },
+              userMessage: { backgroundColor: "#4a90e2", textColor: "#ffffff" },
+              botMessage: { backgroundColor: "#f0f0f0", textColor: "#000000" },
+            },
+            initialMessages: ['👋 Hi! How can I help you today?']
+        });
+
+        // The widget can take a moment to be added to the DOM.
+        // We poll briefly to find it and then hide it.
+        let attempts = 0;
+        const intervalId = setInterval(() => {
+          const widgetElement = document.querySelector('n8n-chat');
+          if (widgetElement || attempts > 10) {
+            clearInterval(intervalId);
+            if (widgetElement) {
+              (widgetElement as HTMLElement).style.display = 'none';
+            }
+          }
+          attempts++;
+        }, 100);
+
+      } catch (error) {
+        console.error("Failed to initialize n8n chat widget:", error);
+      }
+    };
+    initializeChat();
+  }, []); // Empty dependency array ensures this runs only once.
+
+  // Effect to control widget visibility based on its DOM element.
+  useEffect(() => {
+    const widgetElement = document.querySelector('n8n-chat');
+    if (widgetElement) {
+      (widgetElement as HTMLElement).style.display = isCureBotPageOpen ? 'block' : 'none';
+    }
+  }, [isCureBotPageOpen]);
 
   const REACH_US_WIDGET = { 
     src: 'https://api.leadconnectorhq.com/widget/booking/xCEEUK8oshX6061S9lrP', 
@@ -139,6 +191,11 @@ export default function App() {
   const handleOpenBookingModal = (widgetInfo: {src: string; id: string}) => {
     setIsTrialModalOpen(false); // Close other modals when opening this one
     setBookingWidgetInfo(widgetInfo);
+  };
+
+  const handleOpenCureBotPage = () => {
+    setIsCureBotPageOpen(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleScrollToWhoYouAre = () => {
@@ -166,6 +223,10 @@ export default function App() {
   const handleBackFromVideo = () => {
     setPlayingVideoInfo(null);
   };
+  
+  if (isCureBotPageOpen) {
+    return <CureBotPage onBack={() => setIsCureBotPageOpen(false)} />;
+  }
 
   if (playingVideoInfo && selectedCategory) {
     return (
@@ -192,6 +253,7 @@ export default function App() {
         <Hero 
           onStartTrial={() => setIsTrialModalOpen(true)} 
           onScrollToServices={handleScrollToWhoYouAre} 
+          onOpenCureBot={handleOpenCureBotPage}
         />
         <WhoYouAre ref={whoYouAreRef} onCategoryClick={handleSelectCategory} />
         <InfoSection />
