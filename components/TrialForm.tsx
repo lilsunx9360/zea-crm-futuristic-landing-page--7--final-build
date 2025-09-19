@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Role, BusinessCategory } from '../types';
 
@@ -100,6 +101,15 @@ const TrialForm: React.FC<TrialFormProps> = ({ onSuccess }) => {
       <button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300 !mt-4 sm:!mt-5">
         Submit
       </button>
+      <div className="text-center text-gray-400 text-sm py-2">OR</div>
+      <a 
+        href="https://api.leadconnectorhq.com/widget/booking/HZQ0cGWTvMEjFfFehmvc" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 sm:py-2.5 px-4 rounded-lg transition-colors duration-300"
+      >
+        Book an Appointment
+      </a>
     </form>
   );
 };

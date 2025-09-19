@@ -52,64 +52,75 @@ const BookAppointment: React.FC = () => {
               <p className="text-gray-300">We will contact you shortly to confirm the details.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="sr-only">Name</label>
-                <input 
-                  type="text" 
-                  name="name" 
-                  id="name" 
-                  placeholder="Your Name" 
-                  required 
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
-                />
-              </div>
-              <div>
-                <label htmlFor="email-appt" className="sr-only">Email</label>
-                <input 
-                  type="email" 
-                  name="email" 
-                  id="email-appt" 
-                  placeholder="Your Email" 
-                  required 
-                  value={formData.email} 
-                  onChange={handleChange} 
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
-                />
-              </div>
-              <div>
-                <label htmlFor="mobileNumber" className="sr-only">Mobile Number</label>
-                <input 
-                  type="tel" 
-                  name="mobileNumber" 
-                  id="mobileNumber" 
-                  placeholder="Your Mobile Number" 
-                  required 
-                  value={formData.mobileNumber} 
-                  onChange={handleChange} 
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
-                />
-              </div>
-              <div>
-                <label htmlFor="description" className="sr-only">Description</label>
-                <textarea
-                  name="description"
-                  id="description"
-                  placeholder="Describe your requirements..."
-                  rows={4}
-                  required
-                  value={formData.description}
-                  onChange={handleChange}
-                  className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition resize-none"
-                />
-              </div>
-              
-              <button type="submit" className="w-full bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">
-                Submit
-              </button>
-            </form>
+            <>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="sr-only">Name</label>
+                  <input 
+                    type="text" 
+                    name="name" 
+                    id="name" 
+                    placeholder="Your Name" 
+                    required 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email-appt" className="sr-only">Email</label>
+                  <input 
+                    type="email" 
+                    name="email" 
+                    id="email-appt" 
+                    placeholder="Your Email" 
+                    required 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="mobileNumber" className="sr-only">Mobile Number</label>
+                  <input 
+                    type="tel" 
+                    name="mobileNumber" 
+                    id="mobileNumber" 
+                    placeholder="Your Mobile Number" 
+                    required 
+                    value={formData.mobileNumber} 
+                    onChange={handleChange} 
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition" 
+                  />
+                </div>
+                <div>
+                  <label htmlFor="description" className="sr-only">Description</label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    placeholder="Describe your requirements..."
+                    rows={4}
+                    required
+                    value={formData.description}
+                    onChange={handleChange}
+                    className="w-full bg-gray-800 border border-gray-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-[#fbbf24] focus:border-[#fbbf24] outline-none transition resize-none"
+                  />
+                </div>
+                
+                <button type="submit" className="w-full bg-gradient-to-r from-amber-500 to-yellow-600 text-white font-bold py-3 px-4 rounded-lg hover:opacity-90 transition-opacity">
+                  Submit
+                </button>
+              </form>
+              <div className="text-center text-gray-400 text-sm py-4">OR</div>
+              <a 
+                href="https://api.leadconnectorhq.com/widget/booking/HZQ0cGWTvMEjFfFehmvc" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block w-full text-center bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
+              >
+                Book an Appointment
+              </a>
+            </>
           )}
         </div>
         
