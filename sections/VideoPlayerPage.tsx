@@ -13,6 +13,9 @@ interface VideoPlayerPageProps {
 }
 
 const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ videoId, benefitTitle, onBack }) => {
+  // Use the standard and most reliable URL for embedding Google Drive videos.
+  const embedUrl = `https://drive.google.com/file/d/${videoId}/preview`;
+
   return (
     <div className="min-h-screen bg-black text-white p-4 sm:p-6 md:p-8 animate-fade-in">
       <div className="max-w-5xl mx-auto">
@@ -26,10 +29,9 @@ const VideoPlayerPage: React.FC<VideoPlayerPageProps> = ({ videoId, benefitTitle
 
         <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl shadow-amber-500/10">
           <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&rel=0`}
-            title="YouTube video player"
+            className="w-full h-full"
+            src={embedUrl}
+            title="Video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

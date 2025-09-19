@@ -1,34 +1,33 @@
-import React from 'react';
+import * as React from 'react';
+import type { JSX } from 'react';
 
 export enum Role {
-  Owner = "Owner",
-  Startup = "Startup Company",
-  Manager = "Manager",
-  Admin = "Administrator",
-  Other = "Other"
+  Owner = 'Owner/Director',
+  Manager = 'Manager',
+  Doctor = 'Doctor',
+  Staff = 'Staff',
+  Other = 'Other',
 }
 
 export enum BusinessCategory {
-  Hospitals = "Hospitals",
-  Clinics = "Clinics",
-  Laboratories = "Laboratories",
-  EquipmentSuppliers = "Equipment Suppliers",
-  Pharma = "Pharma Suppliers & Retailers",
-  Wellness = "Wellness Centers",
-  Ambulance = "Ambulance Services",
-  WasteManagement = "Medical Waste Management",
-  StaffOnboarding = "Staff Onboarding Automation"
+  Hospitals = 'Hospitals',
+  Clinics = 'Clinics',
+  Labs = 'Diagnostic Labs',
+  Pharmacies = 'Pharmacies',
+  Other = 'Other',
 }
 
-export interface BenefitPoint {
+export interface ServicePoint {
+  videoId: string;
   title: string;
   description: string;
-  videoId: string;
 }
 
 export interface ServiceCategory {
-  name: string;
-  videoType?: 'youtube' | 'mp4';
+  id: string;
+  icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+  title: string;
+  description: string;
   heading: string;
-  points: BenefitPoint[];
+  points: ServicePoint[];
 }
